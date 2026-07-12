@@ -245,38 +245,104 @@
         .banner-concept {
             background: linear-gradient(135deg, #121214 0%, #161619 100%);
             border: 1px solid var(--border-color);
-            padding: 50px 40px;
+            padding: 40px 36px;
             margin-top: 40px;
             position: relative;
             overflow: hidden;
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            grid-template-areas: "icon body";
+            align-items: center;
+            column-gap: 28px;
+            row-gap: 20px;
+            width: 100%;
+        }
+
+        .banner-concept::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0.6;
         }
 
         .banner-concept::after {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.02));
+            top: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
             pointer-events: none;
+        }
+
+        .banner-concept__icon {
+            grid-area: icon;
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid rgba(197, 160, 89, 0.35);
+            background: rgba(197, 160, 89, 0.08);
+            color: var(--accent-gold);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.12);
+            position: relative;
+            z-index: 1;
+            justify-self: center;
+        }
+
+        .banner-concept__icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .banner-concept__body {
+            grid-area: body;
+            position: relative;
+            z-index: 1;
+            min-width: 0;
+        }
+
+        .banner-concept__tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 5px 12px;
+            margin-bottom: 14px;
+            background: rgba(197, 160, 89, 0.06);
         }
 
         .banner-title {
             font-family: var(--font-serif);
-            font-size: 22px;
+            font-size: clamp(18px, 2.2vw, 22px);
             color: var(--accent-gold);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            line-height: 1.3;
+            line-height: 1.35;
+            text-wrap: balance;
         }
 
         .banner-text {
             color: var(--text-muted);
             font-size: 15px;
-            max-width: 800px;
             line-height: 1.7;
+            text-wrap: pretty;
+        }
+
+        .hero-grid > .hero-content:last-child {
+            width: 100%;
         }
 
         /* Services Section */
@@ -306,60 +372,153 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
         }
 
         .service-card {
-            background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 50px 40px;
+            background: linear-gradient(160deg, #121214 0%, #0f0f11 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 36px 32px 40px;
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 320px;
+            gap: 20px;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            opacity: 0;
         }
 
         .service-card:hover {
-            border-color: var(--border-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(197, 160, 89, 0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card__head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .service-card__icon {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            background: rgba(197, 160, 89, 0.06);
+            color: var(--accent-gold);
+            transition: var(--transition-smooth);
+        }
+
+        .service-card__icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .service-card:hover .service-card__icon {
+            border-color: rgba(197, 160, 89, 0.45);
+            background: rgba(197, 160, 89, 0.12);
+            box-shadow: 0 0 24px rgba(197, 160, 89, 0.15);
+            transform: scale(1.05);
         }
 
         .service-num {
             font-family: var(--font-serif);
-            font-size: 18px;
+            font-size: 15px;
+            color: rgba(197, 160, 89, 0.45);
+            letter-spacing: 1px;
+            padding-top: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-num {
             color: var(--accent-gold);
-            margin-bottom: 30px;
-            display: block;
         }
 
         .service-name {
             font-family: var(--font-serif);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 400;
-            margin-bottom: 16px;
-            line-height: 1.2;
+            line-height: 1.25;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--text-light);
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-name {
+            color: var(--accent-gold);
         }
 
         .service-desc {
             color: var(--text-muted);
             font-size: 14px;
             font-weight: 300;
+            line-height: 1.75;
+            margin-top: auto;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .service-card:hover .service-desc {
+            border-top-color: rgba(197, 160, 89, 0.12);
         }
 
         /* Gallery Section */
         .gallery {
-            padding: 60px 0 120px;
+            padding: 40px 0 80px;
+        }
+
+        .gallery .section-header {
+            margin-bottom: 48px;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1040px;
+            margin: 0 auto;
         }
 
         .gallery-card {
@@ -414,6 +573,206 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .gallery-card--featured {
+            grid-column: 1 / -1;
+            aspect-ratio: 109 / 48;
+            max-height: 360px;
+            width: 100%;
+            border-color: rgba(197, 160, 89, 0.35);
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.06);
+        }
+
+        .gallery-card--featured .ba-slider__stack {
+            background: var(--bg-dark);
+        }
+
+        .gallery-card--featured .ba-slider__img {
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .gallery-card--banner {
+            grid-column: 1 / -1;
+            aspect-ratio: 160 / 74;
+            max-height: 300px;
+            background: var(--bg-dark);
+        }
+
+        .gallery-card--banner img {
+            object-fit: contain;
+            object-position: center center;
+            filter: none;
+        }
+
+        .gallery-card--banner:hover img {
+            transform: none;
+            filter: none;
+        }
+
+        .gallery-card--slider {
+            cursor: pointer;
+        }
+
+        .gallery-card--slider:hover img {
+            transform: none;
+            filter: none;
+        }
+
+        /* Before / After vertical slider */
+        .ba-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            user-select: none;
+            touch-action: none;
+            cursor: ns-resize;
+        }
+
+        .ba-slider__stack {
+            position: absolute;
+            inset: 0;
+        }
+
+        .ba-slider__img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            pointer-events: none;
+        }
+
+        .ba-slider__reveal {
+            display: none;
+        }
+
+        .ba-slider__img--before {
+            z-index: 1;
+        }
+
+        .ba-slider__img--after {
+            z-index: 2;
+            clip-path: inset(0 0 50% 0);
+        }
+
+        .ba-slider__handle {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            z-index: 4;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: translateY(-50%);
+            cursor: ns-resize;
+            box-shadow: 0 0 12px rgba(197, 160, 89, 0.6);
+        }
+
+        .ba-slider__handle::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 3px solid var(--bg-dark);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .ba-slider__handle::after {
+            content: '⇅';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--bg-dark);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .ba-slider__label {
+            position: absolute;
+            z-index: 5;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(10, 10, 11, 0.75);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: var(--accent-gold);
+            pointer-events: none;
+        }
+
+        .ba-slider__label--after {
+            top: 16px;
+            left: 16px;
+        }
+
+        .ba-slider__label--before {
+            bottom: 16px;
+            left: 16px;
+        }
+
+        .ba-slider__hint {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            z-index: 5;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: rgba(10, 10, 11, 0.6);
+            padding: 5px 10px;
+            pointer-events: none;
+        }
+
+        .gallery-card--featured .ba-slider__hint {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-card--featured {
+                aspect-ratio: 109 / 48;
+                max-height: 240px;
+            }
+
+            .gallery-card--banner {
+                aspect-ratio: 160 / 74;
+                max-height: 200px;
+            }
+        }
+
+        .modal .ba-slider {
+            width: min(92vw, 900px);
+            height: min(55vh, 420px);
+            border: 1px solid var(--border-color);
+            cursor: ns-resize;
+            background: var(--bg-dark);
+        }
+
+        .modal .ba-slider__img {
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .modal .ba-slider__hint {
+            display: block;
+        }
+
+        .modal-content--hidden {
+            display: none;
         }
 
         /* Concept Info (Philosophy) */
@@ -667,6 +1026,26 @@
                 justify-content: center;
             }
 
+            .hero-grid > .hero-content:last-child {
+                max-width: 640px;
+                margin-inline: auto;
+            }
+
+            .banner-concept {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "icon"
+                    "body";
+                justify-items: center;
+                text-align: center;
+                padding: 36px 28px;
+                margin-top: 0;
+            }
+
+            .banner-concept__body {
+                width: 100%;
+            }
+
             .contacts-grid {
                 grid-template-columns: 1fr;
                 gap: 50px;
@@ -706,13 +1085,41 @@
                 padding: 0 16px;
             }
             .banner-concept {
-                padding: 30px 20px;
+                padding: 28px 20px;
+                row-gap: 18px;
+            }
+
+            .banner-title {
+                letter-spacing: 1px;
+            }
+
+            .banner-text {
+                font-size: 14px;
             }
             .contact-banner {
                 padding: 30px 20px;
             }
             .social-buttons {
                 flex-direction: column;
+            }
+
+            .gallery-card--featured {
+                aspect-ratio: 109 / 48;
+                max-height: 200px;
+            }
+
+            .gallery-card--banner {
+                max-height: 170px;
+            }
+
+            .ba-slider__label {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .ba-slider__handle::before {
+                width: 52px;
+                height: 52px;
             }
         }
     </style>
@@ -762,10 +1169,17 @@
                 <!-- Feature Block: Photo Estimation Philosophy -->
                 <div class="hero-content fade-in-section" style="transition-delay: 0.2s;">
                     <div class="banner-concept">
-                        <h3 class="banner-title">СТОИМОСТЬ РАБОТЫ ВСЕГДА РАССЧИТЫВАЕТСЯ ИНДИВИДУАЛЬНО ПО ФОТО</h3>
-                        <p class="banner-text">
-                            Мы не используем неточные калькуляторы стоимости и шаблоны. Каждое изделие уникально. Мы ценим честность и берем в расчет геометрию, состояние каркаса и выбранные премиальные материалы. Пришлите нам детальное фото — и мы зафиксируем точную, справедливую стоимость работы для объектов в Москве и Подмосковье.
-                        </p>
+                        <div class="banner-concept__icon" aria-hidden="true">
+                            <!-- Lucide Icons: https://lucide.dev/icons/camera -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg>
+                        </div>
+                        <div class="banner-concept__body">
+                            <span class="banner-concept__tag">Оценка по фото</span>
+                            <h3 class="banner-title">СТОИМОСТЬ РАБОТЫ ВСЕГДА РАССЧИТЫВАЕТСЯ ИНДИВИДУАЛЬНО ПО ФОТО</h3>
+                            <p class="banner-text">
+                                Мы не используем неточные калькуляторы стоимости и шаблоны. Каждое изделие уникально. Мы ценим честность и берем в расчет геометрию, состояние каркаса и выбранные премиальные материалы. Пришлите нам детальное фото — и мы зафиксируем точную, справедливую стоимость работы для объектов в Москве и Подмосковье.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -781,49 +1195,64 @@
             </div>
 
             <div class="services-grid">
-                <!-- Service 1 -->
+                <!-- Service 1: Lucide armchair -->
                 <div class="service-card fade-in-section">
-                    <span class="service-num">/ 01</span>
-                    <div>
-                        <h3 class="service-name">Реставрация мягкой мебели</h3>
-                        <p class="service-desc">Полный цикл восстановления деревянных элементов, укрепление каркасов, замена наполнителей высокой плотности и возвращение первозданного лоска дорогим вещам.</p>
+                    <div class="service-card__head">
+                        <div class="service-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
+                        </div>
+                        <span class="service-num">/ 01</span>
                     </div>
+                    <h3 class="service-name">Реставрация мягкой мебели</h3>
+                    <p class="service-desc">Полный цикл восстановления деревянных элементов, укрепление каркасов, замена наполнителей высокой плотности и возвращение первозданного лоска дорогим вещам.</p>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="service-card fade-in-section">
-                    <span class="service-num">/ 02</span>
-                    <div>
-                        <h3 class="service-name">Перетяжка диванов/кресел/стульев</h3>
-                        <p class="service-desc">Профессиональная смена обивки диванов, кресел, стульев и изголовий кроватей. Работаем с натуральной кожей, премиальным велюром, замшей и букле ведущих фабрик.</p>
+                <!-- Service 2: Lucide sofa -->
+                <div class="service-card fade-in-section" style="transition-delay: 0.08s;">
+                    <div class="service-card__head">
+                        <div class="service-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2"/><path d="M20 18v2"/><path d="M12 4v9"/></svg>
+                        </div>
+                        <span class="service-num">/ 02</span>
                     </div>
+                    <h3 class="service-name">Перетяжка диванов/кресел/стульев</h3>
+                    <p class="service-desc">Профессиональная смена обивки диванов, кресел, стульев и изголовий кроватей. Работаем с натуральной кожей, премиальным велюром, замшей и букле ведущих фабрик.</p>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="service-card fade-in-section">
-                    <span class="service-num">/ 03</span>
-                    <div>
-                        <h3 class="service-name">Ремонт салонов авто</h3>
-                        <p class="service-desc">Локальная и полная перетяжка автомобильных сидений, рулей, потолков и дверных карт с использованием высокопрочной оригинальной алькантары и автомобильной кожи.</p>
+                <!-- Service 3: Lucide car-front -->
+                <div class="service-card fade-in-section" style="transition-delay: 0.16s;">
+                    <div class="service-card__head">
+                        <div class="service-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
+                        </div>
+                        <span class="service-num">/ 03</span>
                     </div>
+                    <h3 class="service-name">Ремонт салонов авто</h3>
+                    <p class="service-desc">Локальная и полная перетяжка автомобильных сидений, рулей, потолков и дверных карт с использованием высокопрочной оригинальной алькантары и автомобильной кожи.</p>
                 </div>
 
-                <!-- Service 4 -->
-                <div class="service-card fade-in-section">
-                    <span class="service-num">/ 04</span>
-                    <div>
-                        <h3 class="service-name">Каретная стяжка</h3>
-                        <p class="service-desc">Классическая техника Capitonne для оформления изголовий, стеновых панелей и пуфов. Ювелирная точность геометрии складок и идеальная глубина посадки пуговиц.</p>
+                <!-- Service 4: Lucide layout-grid -->
+                <div class="service-card fade-in-section" style="transition-delay: 0.24s;">
+                    <div class="service-card__head">
+                        <div class="service-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                        </div>
+                        <span class="service-num">/ 04</span>
                     </div>
+                    <h3 class="service-name">Каретная стяжка</h3>
+                    <p class="service-desc">Классическая техника Capitonne для оформления изголовий, стеновых панелей и пуфов. Ювелирная точность геометрии складок и идеальная глубина посадки пуговиц.</p>
                 </div>
 
-                <!-- Service 5 -->
-                <div class="service-card fade-in-section">
-                    <span class="service-num">/ 05</span>
-                    <div>
-                        <h3 class="service-name">Компьютерная вышивка</h3>
-                        <p class="service-desc">Нанесение индивидуальных логотипов, фамильных гербов или узоров на любые виды тканей и кожу на высокоточном японском оборудовании.</p>
+                <!-- Service 5: Lucide wand-sparkles -->
+                <div class="service-card fade-in-section" style="transition-delay: 0.32s;">
+                    <div class="service-card__head">
+                        <div class="service-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
+                        </div>
+                        <span class="service-num">/ 05</span>
                     </div>
+                    <h3 class="service-name">Компьютерная вышивка</h3>
+                    <p class="service-desc">Нанесение индивидуальных логотипов, фамильных гербов или узоров на любые виды тканей и кожу на высокоточном японском оборудовании.</p>
                 </div>
             </div>
         </div>
@@ -851,39 +1280,76 @@
             </div>
 
             <div class="gallery-grid">
-                <div class="gallery-card fade-in-section">
-                    <img src="assets/1.png" alt="Пример работы 1" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
+                <!-- Featured Before/After -->
+                <div class="gallery-card gallery-card--featured gallery-card--slider fade-in-section" data-ba-slider data-modal-ba>
+                    <div class="ba-slider" data-position="50">
+                        <div class="ba-slider__stack">
+                            <img class="ba-slider__img ba-slider__img--before" src="assets/chairs-before.png" alt="Стулья до реставрации">
+                            <img class="ba-slider__img ba-slider__img--after" src="assets/chairs-after.png" alt="Стулья после реставрации">
+                        </div>
+                        <div class="ba-slider__handle"></div>
+                        <span class="ba-slider__label ba-slider__label--after">После</span>
+                        <span class="ba-slider__label ba-slider__label--before">До</span>
+                        <span class="ba-slider__hint">Тяните вверх-вниз</span>
+                    </div>
+                </div>
+
+                <div class="gallery-card fade-in-section" style="transition-delay: 0.05s;">
+                    <img src="assets/bed1.png" alt="Элитная перетяжка кровати" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h4>Реставрация мебели</h4>
-                            <p>Увеличить фото</p>
+                            <h4>Элитная кровать</h4>
+                            <p>Перетяжка кожи · Увеличить фото</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="gallery-card fade-in-section" style="transition-delay: 0.1s;">
-                    <img src="assets/2.png" alt="Пример работы 2" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
+                    <img src="assets/sofa1.png" alt="Кожаный диван и кресло" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h4>Перетяжка кожи</h4>
-                            <p>Увеличить фото</p>
+                            <h4>Кожаный диван</h4>
+                            <p>Честерфилд · Увеличить фото</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="gallery-card fade-in-section" style="transition-delay: 0.2s;">
-                    <img src="assets/3.png" alt="Пример работы 3" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
+                    <img src="assets/sofa2.png" alt="Перетяжка дивана" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h4>Ремонт салона авто</h4>
-                            <p>Увеличить фото</p>
+                            <h4>Диван в интерьере</h4>
+                            <p>Премиальная ткань · Увеличить фото</p>
                         </div>
                     </div>
                 </div>
-                <div class="gallery-card fade-in-section" style="transition-delay: 0.3s;">
-                    <img src="assets/4.png" alt="Пример работы 4" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
+
+                <div class="gallery-card fade-in-section" style="transition-delay: 0.25s;">
+                    <img src="assets/sofa3.png" alt="Кожаный честерфилд" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h4>Эксклюзивные детали</h4>
-                            <p>Увеличить фото</p>
+                            <h4>Честерфилд</h4>
+                            <p>Кожаная перетяжка · Увеличить фото</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card fade-in-section" style="transition-delay: 0.3s;">
+                    <img src="assets/salon1.png" alt="Перетяжка салона автомобиля" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Салон автомобиля</h4>
+                            <p>Кожа и ткань · Увеличить фото</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card gallery-card--banner fade-in-section" style="transition-delay: 0.35s;">
+                    <img src="assets/chairs1.png" alt="Перетяжка мебели и салона автомобиля" onerror="this.style.display='none'; this.parentNode.style.background='#161619';">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Реставрация стульев</h4>
+                            <p>Классическая перетяжка · Увеличить фото</p>
                         </div>
                     </div>
                 </div>
@@ -966,6 +1432,16 @@
     <div class="modal" id="gallery-modal">
         <button class="modal-close" aria-label="Закрыть">×</button>
         <img src="" alt="Детальный просмотр" class="modal-content" id="modal-img">
+        <div class="ba-slider modal-content modal-content--hidden" id="modal-ba-slider" data-position="50">
+            <div class="ba-slider__stack">
+                <img class="ba-slider__img ba-slider__img--before" src="assets/chairs-before.png" alt="Стулья до реставрации">
+                <img class="ba-slider__img ba-slider__img--after" src="assets/chairs-after.png" alt="Стулья после реставрации">
+            </div>
+            <div class="ba-slider__handle"></div>
+            <span class="ba-slider__label ba-slider__label--after">После</span>
+            <span class="ba-slider__label ba-slider__label--before">До</span>
+            <span class="ba-slider__hint">Тяните вверх-вниз</span>
+        </div>
     </div>
 
     <script>
@@ -1022,18 +1498,104 @@
             });
         });
 
+        // Before/After vertical slider
+        function initBaSlider(sliderEl) {
+            if (!sliderEl || sliderEl.dataset.baInit) return;
+            sliderEl.dataset.baInit = 'true';
+
+            const afterImg = sliderEl.querySelector('.ba-slider__img--after');
+            const handle = sliderEl.querySelector('.ba-slider__handle');
+            let position = parseFloat(sliderEl.dataset.position) || 50;
+            let dragging = false;
+            let dragMoved = false;
+            let startY = 0;
+
+            const setPosition = (pct) => {
+                position = Math.max(8, Math.min(92, pct));
+                afterImg.style.clipPath = `inset(0 0 ${100 - position}% 0)`;
+                handle.style.top = position + '%';
+                sliderEl.dataset.position = position;
+            };
+
+            const posFromEvent = (e) => {
+                const rect = sliderEl.getBoundingClientRect();
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return ((clientY - rect.top) / rect.height) * 100;
+            };
+
+            const onStart = (e) => {
+                dragging = true;
+                dragMoved = false;
+                startY = e.touches ? e.touches[0].clientY : e.clientY;
+                setPosition(posFromEvent(e));
+                e.preventDefault();
+            };
+
+            const onMove = (e) => {
+                if (!dragging) return;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                if (Math.abs(clientY - startY) > 6) {
+                    dragMoved = true;
+                    sliderEl.dataset.dragged = '1';
+                }
+                setPosition(posFromEvent(e));
+                e.preventDefault();
+            };
+
+            const onEnd = () => {
+                dragging = false;
+                if (!dragMoved) sliderEl.dataset.dragged = '0';
+            };
+
+            setPosition(position);
+
+            sliderEl.addEventListener('mousedown', onStart);
+            sliderEl.addEventListener('touchstart', onStart, { passive: false });
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('touchmove', onMove, { passive: false });
+            window.addEventListener('mouseup', onEnd);
+            window.addEventListener('touchend', onEnd);
+        }
+
+        document.querySelectorAll('.ba-slider').forEach(initBaSlider);
+
         // Modal Logic
         const modal = document.getElementById('gallery-modal');
         const modalImg = document.getElementById('modal-img');
+        const modalBaSlider = document.getElementById('modal-ba-slider');
         const cards = document.querySelectorAll('.gallery-card');
         const closeBtn = document.querySelector('.modal-close');
 
         cards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                const slider = card.querySelector('.ba-slider');
+                if (slider?.dataset.dragged === '1') {
+                    slider.dataset.dragged = '0';
+                    return;
+                }
+
+                if (card.hasAttribute('data-modal-ba')) {
+                    const pos = slider?.dataset.position || 50;
+                    modalBaSlider.dataset.position = pos;
+                    if (!modalBaSlider.dataset.baInit) initBaSlider(modalBaSlider);
+                    const modalAfter = modalBaSlider.querySelector('.ba-slider__img--after');
+                    const handle = modalBaSlider.querySelector('.ba-slider__handle');
+                    modalAfter.style.clipPath = `inset(0 0 ${100 - pos}% 0)`;
+                    handle.style.top = pos + '%';
+
+                    modalImg.classList.add('modal-content--hidden');
+                    modalBaSlider.classList.remove('modal-content--hidden');
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    return;
+                }
+
                 const img = card.querySelector('img');
-                // Open modal only if image was loaded properly
-                if (img.style.display !== 'none') {
+                if (img && img.style.display !== 'none') {
+                    modalBaSlider.classList.add('modal-content--hidden');
+                    modalImg.classList.remove('modal-content--hidden');
                     modalImg.src = img.src;
+                    modalImg.alt = img.alt;
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }
